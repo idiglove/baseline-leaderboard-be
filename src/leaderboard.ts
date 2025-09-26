@@ -18,14 +18,7 @@ export class LeaderboardController {
         });
       }
 
-      // Check if entry already exists
-      const exists = await leaderboardService.entryExists(entryData.repo_url);
-      if (exists) {
-        return res.status(409).json({
-          success: false,
-          message: 'An entry for this repository already exists in the leaderboard'
-        });
-      }
+
 
       const entry = await leaderboardService.addEntry(entryData);
       const rank = await leaderboardService.getEntryRank(entryData.score);
